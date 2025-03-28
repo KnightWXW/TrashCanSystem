@@ -13,7 +13,7 @@ void Timer_Init(void)
     TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;     // 时钟分频: 不分频，此参数用于配置滤波器时钟，不影响时基单元功能
     TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up; // 计数器模式: 向上计数
     TIM_TimeBaseInitStructure.TIM_Period = 10 - 1;                  // 计数周期: ARR的值
-    TIM_TimeBaseInitStructure.TIM_Prescaler = 3600 - 1;             // 预分频器: PSC的值
+    TIM_TimeBaseInitStructure.TIM_Prescaler = 7200 - 1;             // 预分频器: PSC的值
     TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 0;            // 重复计数器: 高级定时器才使用
     TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStructure);
 
