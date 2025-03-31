@@ -1,38 +1,20 @@
 #include "stm32f10x.h"
 #include "Delay.h"
+#include "LED.h"
+#include "OLED.h"
+#include "Key.h"
+#include "Servo.h"
 
-typedef enum
-{
-    KEY_DOWN, // 按键按下状态
-    KEY_UP,   // 按键松开状态
-} KeyStatus;
-
-typedef enum
-{
-    NULL_PRESS,  // 没有按键事件
-    SHORT_PRESS, // 短按事件
-    LONG_PRESS,  // 长按事件
-} KeyEvent;
-
-typedef struct
-{
-    KeyStatus status;        // 按键状态
-    KeyEvent event;          // 按键事件
-    uint16_t longPressCount; // 按键按下时长
-} KeyHandler;
-
-KeyHandler myKeyHandler;
-
-// 按键状态变量
-volatile uint8_t key_pressed = 0; // 0: 未按下, 1: 短按, 2: 长按
-volatile uint32_t key_timer = 0;  // 按键计时器
-// LED状态变量
-volatile uint8_t led_state = 0; // 0: LED灭, 1: LED亮
+#define RCC_KEY_PORT RCC_APB2Periph_GPIOB
+#define KEY_PORT GPIOB
+#define KEY_PIN GPIO_Pin_1
+#define SERVO_SHORT_PRESS_ANGLE 90
+#define SERVO_LONG_PRESS_ANGLE 150
 
 void Key_Init()
 {
     // 开启时钟
-    RCC_APB2PeriphClockCmd(KEY_PORT, ENABLE);
+    RCC_APB2PeriphClockCmd(RCC_KEY_PORT, ENABLE);
     // 配置结构体
     GPIO_InitTypeDef GPIO_InitStructure;
     GPIO_InitStructure.GPIO_Pin = KEY_PIN;
@@ -58,17 +40,25 @@ void TIM2_IRQHandler()
         {
             myKeyHandler.status = KEY_DOWN;
         }
-        KeyHandler(&myKeyHandler);
-        if (myKeyHandler.event == SHORT_PRESS | myKeyHandler.event == LONG_PRESS)
+        KeyScanHandler(&myKeyHandler);
+        if (myKeyHandler.event == SHORT_PRESS)
         {
             LED_Turn();
+            Servo_SetAngle(SERVO_SHORT_PRESS_ANGLE);        // 设置舵机的角度
+            OLED_ShowNum(1, 7, SERVO_SHORT_PRESS_ANGLE, 3); // OLED显示角度变量
+        }
+        else if (myKeyHandler.event == LONG_PRESS)
+        {
+            LED_Turn();
+            Servo_SetAngle(SERVO_LONG_PRESS_ANGLE);        // 设置舵机的角度
+            OLED_ShowNum(1, 7, SERVO_LONG_PRESS_ANGLE, 3); // OLED显示角度变量
         }
         TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
     }
     return;
 }
 
-void KeyHandler(KeyHandler *handler)
+void KeyScanHandler(KeyHandler *handler)
 {
     unsigned char keyStatus = 1;
     if (handler->longPressCount == 0 && handler->status != KEY_DOWN)

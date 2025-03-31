@@ -43,4 +43,3 @@ void Timer_Init(void)
     // TIM使能
     TIM_Cmd(TIM2, ENABLE); // 使能TIM2，定时器开始运行
 }
-

@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "key.h": "c",
+        "oled.h": "c",
+        "delay.h": "c",
+        "led.h": "c"
+    }
+}

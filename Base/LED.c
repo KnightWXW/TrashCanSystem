@@ -1,5 +1,8 @@
 #include "stm32f10x.h"
 
+#define LED_PORT RCC_APB2Periph_GPIOA
+#define LED_PIN GPIO_Pin_5
+
 void LED_Init(void)
 {
     // 开启时钟
