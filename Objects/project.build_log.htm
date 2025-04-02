@@ -17,30 +17,30 @@ Library Manager: ArmAr.exe V5.06 update 5 (build 528)
 Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
 CPU DLL:         SARMCM3.DLL V5.24.1
 Dialog DLL:      DCM.DLL V1.16.0.0
-Target DLL:      UL2CM3.DLL V1.160.3.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 W:\TrashCanSystem\project.uvoptx.uvprojx
-Project File Date:  03/31/2025
+Project File Date:  04/01/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'D:\KeilV5\ARM\ARMCC\Bin'
 Build target 'project'
-compiling main.c...
-.\Base\Key.h(34): warning:  #1295-D: Deprecated declaration Key_Init - give arg types
-  extern void Key_Init();
-.\Base\Key.h(36): warning:  #1295-D: Deprecated declaration TIM2_IRQHandler - give arg types
-  extern void TIM2_IRQHandler();
-User\main.c: 2 warnings, 0 errors
 compiling Key.c...
 Base\Key.h(34): warning:  #1295-D: Deprecated declaration Key_Init - give arg types
   extern void Key_Init();
-Base\Key.h(36): warning:  #1295-D: Deprecated declaration TIM2_IRQHandler - give arg types
-  extern void TIM2_IRQHandler();
+Base\Key.h(35): warning:  #1295-D: Deprecated declaration Key_GetNum - give arg types
+  extern uint16_t Key_GetNum();
 Base\Key.c: 2 warnings, 0 errors
+compiling main.c...
+.\Base\Key.h(34): warning:  #1295-D: Deprecated declaration Key_Init - give arg types
+  extern void Key_Init();
+.\Base\Key.h(35): warning:  #1295-D: Deprecated declaration Key_GetNum - give arg types
+  extern uint16_t Key_GetNum();
+User\main.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=4506 RO-data=1790 RW-data=4 ZI-data=1636  
+Program Size: Code=4142 RO-data=1790 RW-data=8 ZI-data=1632  
 ".\Objects\project.uvoptx" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>

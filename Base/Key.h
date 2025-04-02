@@ -32,8 +32,9 @@ extern KeyHandler myKeyHandler;
 // volatile uint8_t led_state = 0; // 0: LED灭, 1: LED亮
 
 extern void Key_Init();
-extern void InitKeyHandler(KeyHandler *handler);
-extern void TIM2_IRQHandler();
-extern void KeyScanHandler(KeyHandler *handler);
+extern uint16_t Key_GetNum();
+// extern void InitKeyHandler(KeyHandler *handler);
+// extern void TIM2_IRQHandler();
+// extern void KeyScanHandler(KeyHandler *handler);
 
 #endif

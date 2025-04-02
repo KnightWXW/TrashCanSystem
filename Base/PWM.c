@@ -1,7 +1,7 @@
 #include "stm32f10x.h"
 
 #define PWM_PORT RCC_APB2Periph_GPIOA
-#define PWM_PIN GPIO_Pin_3
+#define PWM_PIN GPIO_Pin_1
 
 void PWM_Init(void)
 {

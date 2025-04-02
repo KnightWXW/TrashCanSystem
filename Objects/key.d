@@ -30,6 +30,4 @@
 .\objects\key.o: .\Library\misc.h
 .\objects\key.o: Base\Delay.h
 .\objects\key.o: Base\LED.h
-.\objects\key.o: Base\OLED.h
 .\objects\key.o: Base\Key.h
-.\objects\key.o: Base\Servo.h
